@@ -26,6 +26,20 @@ drifting dust and tumbleweeds rolling the horizon.
 - Eliminations arrive as a nailed-up **WANTED** poster, shot through with bullet holes
 - Muzzle flash and screen recoil on every kill
 
+## Portraits
+
+Every contender gets a face on the wanted poster, on their chip in The Posse, and on their
+marker in Boot Hill.
+
+- Drop a **lowercase** file into `portraits/` named after the contender — `ahmad.jpg`,
+  `mary-sue.png` — and it's picked up automatically (`.jpg`, `.jpeg`, `.png`, `.webp`)
+- Or click any contender's frame in The Posse to attach a photo from your machine; it's
+  cropped to 220×264 and kept in `localStorage`
+- Anyone without a photo rides as **"this person is missing"** — a `?` over a hatted
+  silhouette, which is a perfectly respectable look for a wanted poster
+
+See [`portraits/README.md`](portraits/README.md) for the naming rules.
+
 ## Sound
 
 - Background cowboy standoff theme on a loop, ducked while the wheel spins, toggleable

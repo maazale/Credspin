@@ -397,7 +397,7 @@ kbd{
 .chips::-webkit-scrollbar{width:6px}
 .chips::-webkit-scrollbar-thumb{background:rgba(214,168,109,.3);border-radius:99px}
 .chip{
-  display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:var(--r-md);
+  display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:var(--r-md);
   background:linear-gradient(180deg,rgba(232,200,138,.06),rgba(0,0,0,.2));
   border:1px solid var(--line);
   box-shadow:inset 0 1px 0 rgba(255,228,186,.07);
@@ -408,7 +408,28 @@ kbd{
 .chip:hover{background:linear-gradient(180deg,rgba(232,200,138,.12),rgba(0,0,0,.16));border-color:var(--line-hi);transform:translateX(5px) rotate(-.4deg)}
 .chip.leaving{animation:chipOut .45s var(--ease-out) forwards}
 @keyframes chipOut{to{opacity:0;transform:translateX(56px) rotate(9deg) scale(.8);max-height:0;padding-top:0;padding-bottom:0;margin-bottom:-9px}}
-.chip .dot{width:13px;height:13px;border-radius:50%;flex:none;box-shadow:0 0 10px -1px currentColor,inset 0 -2px 3px rgba(0,0,0,.45)}
+.chip .av{
+  width:34px;height:39px;flex:none;padding:0;border:0;cursor:pointer;position:relative;overflow:hidden;
+  border-radius:4px;display:grid;place-items:center;
+  background:linear-gradient(168deg,#E6CFA2,#B0904F);
+  box-shadow:inset 0 0 0 1.5px rgba(92,52,24,.9),0 2px 6px -3px #000;
+  transition:transform .28s var(--ease-spring),box-shadow .25s;
+}
+.chip .av:hover{transform:scale(1.09) rotate(-2.5deg);box-shadow:inset 0 0 0 1.5px var(--gold),0 5px 12px -5px #000}
+.chip .av:active{transform:scale(.95)}
+.chip .av img{width:100%;height:100%;object-fit:cover;filter:sepia(.5) contrast(1.05) saturate(.85)}
+.chip .av .q{font-family:var(--display);font-size:17px;color:rgba(58,31,10,.7);line-height:1}
+.chip .av .tick{position:absolute;left:0;right:0;bottom:0;height:3.5px;background:var(--c);box-shadow:0 0 7px -1px var(--c)}
+/* colour swatch on the Boot Hill thumbs */
+.elim .av{
+  width:26px;height:30px;flex:none;border-radius:3px;position:relative;overflow:hidden;display:grid;place-items:center;
+  background:linear-gradient(168deg,#D8C094,#9C7C42);
+  box-shadow:inset 0 0 0 1.2px rgba(92,52,24,.85);
+}
+.elim .av img{width:100%;height:100%;object-fit:cover;filter:sepia(.6) contrast(1.05) saturate(.6) brightness(.86)}
+.elim .av .q{font-family:var(--display);font-size:13px;color:rgba(58,31,10,.65);line-height:1}
+.elim.champ .av{box-shadow:inset 0 0 0 1.4px var(--gold)}
+.elim.champ .av img{filter:sepia(.35) contrast(1.06) saturate(1)}
 .chip .label{flex:1;font-size:14.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
 .chip .x{
   width:27px;height:27px;flex:none;border-radius:7px;border:0;cursor:pointer;
@@ -573,7 +594,41 @@ canvas#wheel{position:relative;width:100%;height:100%;border-radius:50%;
 }
 .p-rule{height:3px;margin:12px 22px;background:repeating-linear-gradient(90deg,rgba(58,31,10,.75) 0 8px,transparent 8px 12px)}
 .p-rule.thin{height:1px;margin:14px 34px;background:rgba(58,31,10,.35)}
-.poster .emoji{font-size:48px;line-height:1;display:block;margin:2px 0 4px;animation:pop .65s var(--ease-spring) .25s both;filter:drop-shadow(0 4px 6px rgba(90,52,24,.5))}
+/* ---- Portraits: the face on the poster ---- */
+[hidden]{display:none!important}
+
+.portrait{position:relative;width:100%;margin:4px auto 2px;animation:pop .65s var(--ease-spring) .25s both}
+.pshot{position:relative;width:156px;margin:0 auto}
+.pframe{
+  position:relative;width:156px;height:188px;overflow:hidden;
+  background:linear-gradient(168deg,#E6CFA2,#C4A671);
+  border:3px solid #5C3418;
+  box-shadow:inset 0 0 0 2px rgba(246,232,205,.55),inset 0 0 28px rgba(90,52,24,.5),0 8px 16px -8px rgba(40,20,4,.75);
+}
+.pframe img{width:100%;height:100%;object-fit:cover;display:block;filter:sepia(.55) contrast(1.07) saturate(.82)}
+.pframe::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 38%,transparent 40%,rgba(70,40,14,.5) 100%);
+}
+/* corner tacks on the frame */
+.pframe::before{
+  content:'';position:absolute;inset:5px;z-index:2;pointer-events:none;
+  background-image:
+    radial-gradient(circle,#4A2A10 0 1.6px,transparent 1.9px),radial-gradient(circle,#4A2A10 0 1.6px,transparent 1.9px),
+    radial-gradient(circle,#4A2A10 0 1.6px,transparent 1.9px),radial-gradient(circle,#4A2A10 0 1.6px,transparent 1.9px);
+  background-repeat:no-repeat;background-size:7px 7px;
+  background-position:0 0,100% 0,0 100%,100% 100%;
+}
+/* nobody sat for this one */
+.pmiss{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}
+.pmiss .bust{position:absolute;inset:0;width:100%;height:100%;color:rgba(58,31,10,.22)}
+.pmiss .q{position:relative;font-family:var(--display);font-size:80px;line-height:1;color:rgba(48,25,8,.72);text-shadow:0 2px 0 rgba(255,240,210,.55),0 0 18px rgba(246,232,205,.9)}
+.pstar{position:absolute;right:-16px;top:-16px;width:50px;height:50px;z-index:4;filter:drop-shadow(0 4px 6px rgba(40,20,4,.65));animation:pop .7s var(--ease-spring) .5s both}
+.pcap{
+  margin:11px 0 2px;font-family:var(--stamp);font-size:10.5px;letter-spacing:.15em;
+  text-transform:uppercase;color:#7A4A1C;white-space:nowrap;
+}
+.pcap.missing{color:#8E2B20}
 @keyframes pop{from{transform:scale(0) rotate(-50deg)}60%{transform:scale(1.15) rotate(6deg)}to{transform:none}}
 .poster .kicker{font-family:var(--stamp);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:#6B451C}
 .poster .big{
@@ -867,7 +922,32 @@ footer.foot b{color:var(--tan);font-weight:400}
       <div class="holes"><i></i><i></i><i></i></div>
       <div class="p-top" id="mTop">WANTED</div>
       <div class="p-rule"></div>
-      <span class="emoji" id="mEmoji">&#128165;</span>
+      <div class="portrait">
+        <div class="pshot">
+        <div class="pframe">
+          <img id="mImg" alt="" hidden />
+          <div class="pmiss" id="mMissing">
+            <svg class="bust" viewBox="0 0 120 150" fill="currentColor"
+                 preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <path d="M8 150c0-33 23-48 52-48s52 15 52 48H8Z"/>
+              <circle cx="60" cy="74" r="23"/>
+              <path d="M40 48c-2-19 6-32 20-33 14 1 22 14 20 33Z"/>
+              <path d="M17 49c0-4 6-4 11-2 8 3 20 4.6 32 4.6S84 50 92 47c5-2 11-2 11 2 0 6-19 13-43 13S17 55 17 49Z"/>
+            </svg>
+            <span class="q">?</span>
+          </div>
+        </div>
+        <svg class="pstar" id="mStar" viewBox="0 0 48 48" hidden aria-hidden="true">
+          <path d="M24.00 2.00L29.41 16.56L44.92 17.20L32.75 26.84L36.93 41.80L24.00 33.20L11.07 41.80L15.25 26.84L3.08 17.20L18.59 16.56Z" fill="url(#starg)" stroke="#6B4A14" stroke-width="1.4" stroke-linejoin="round"/>
+          <circle cx="24" cy="24" r="6.4" fill="none" stroke="#6B4A14" stroke-width="1.2"/>
+          <circle cx="24.00" cy="2.00" r="3.1" fill="#F7DE9C" stroke="#6B4A14" stroke-width="1"/><circle cx="44.92" cy="17.20" r="3.1" fill="#F7DE9C" stroke="#6B4A14" stroke-width="1"/><circle cx="36.93" cy="41.80" r="3.1" fill="#F7DE9C" stroke="#6B4A14" stroke-width="1"/><circle cx="11.07" cy="41.80" r="3.1" fill="#F7DE9C" stroke="#6B4A14" stroke-width="1"/><circle cx="3.08" cy="17.20" r="3.1" fill="#F7DE9C" stroke="#6B4A14" stroke-width="1"/>
+          <defs><linearGradient id="starg" x1="6" y1="4" x2="42" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#F7DE9C"/><stop offset=".5" stop-color="#E0B25A"/><stop offset="1" stop-color="#9A6F22"/>
+          </linearGradient></defs>
+        </svg>
+        </div>
+        <div class="pcap missing" id="mCap">This person is missing</div>
+      </div>
       <div class="kicker" id="mKicker">Shot down</div>
       <div class="big" id="mTitle">&mdash;</div>
       <div class="p-rule thin"></div>
@@ -906,7 +986,16 @@ let tween = null;          // {from,to,start,dur}
 
 /* ── persistence ─────────────────────────────────────── */
 const SAVE = 'credspin.v1';
-const save = () => { try{ localStorage.setItem(SAVE, JSON.stringify({items,eliminated,roster,rounds,soundOn,musicOn})); }catch(e){} };
+let warnedFull = false;
+const save = () => {
+  try{
+    localStorage.setItem(SAVE, JSON.stringify({items,eliminated,roster,rounds,soundOn,musicOn}));
+    warnedFull = false;
+  }catch(e){
+    /* almost always the quota, blown by attached photos */
+    if(!warnedFull){ warnedFull = true; toast('Out of storage — photos won’t be remembered.'); }
+  }
+};
 const load = () => {
   try{
     const d = JSON.parse(localStorage.getItem(SAVE)||'null');
@@ -1070,6 +1159,106 @@ function fireFeedback(){
   setTimeout(() => h.classList.remove('recoil'), 520);
 }
 
+/* ── portraits ───────────────────────────────────────────
+   A face for every name. Drop a file into portraits/ named after the
+   contender (ahmad.jpg, mary-sue.png) and it is picked up automatically;
+   otherwise click a chip's frame to attach one. Anything we can't find
+   rides as "this person is missing". */
+const PORTRAIT_DIR = 'portraits/';
+const PORTRAIT_EXT = ['jpg','jpeg','png','webp'];
+const probed = new Map();          // slug -> Promise<url|null>, one lookup per name
+
+const slugify = str => String(str).toLowerCase().trim()
+  .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+
+function probePortrait(label){
+  const sl = slugify(label);
+  if(!sl) return Promise.resolve(null);
+  if(probed.has(sl)) return probed.get(sl);
+  const job = new Promise(resolve => {
+    let i = 0;
+    const next = () => {
+      if(i >= PORTRAIT_EXT.length) return resolve(null);
+      const url = PORTRAIT_DIR + encodeURIComponent(sl) + '.' + PORTRAIT_EXT[i++];
+      const im = new Image();
+      im.onload = () => resolve(url);
+      im.onerror = next;
+      im.src = url;
+    };
+    next();
+  });
+  probed.set(sl, job);
+  return job;
+}
+
+/* look for a face for anyone who hasn't got one yet */
+function huntPortraits(){
+  let found = false;
+  const jobs = items.filter(it => !it.img).map(it =>
+    probePortrait(it.label).then(url => { if(url && !it.img){ it.img = url; found = true; } })
+  );
+  if(jobs.length) Promise.all(jobs).then(() => { if(found) render(false); });
+}
+
+/* shrink whatever they picked to something localStorage can hold */
+const SHOT_W = 220, SHOT_H = 264;
+function fileToPortrait(file){
+  return new Promise((resolve, reject) => {
+    const fr = new FileReader();
+    fr.onerror = () => reject(new Error('could not read that file'));
+    fr.onload = () => {
+      const im = new Image();
+      im.onerror = () => reject(new Error('that file is not an image'));
+      im.onload = () => {
+        const c = document.createElement('canvas');
+        c.width = SHOT_W; c.height = SHOT_H;
+        const x = c.getContext('2d');
+        /* cover-crop, centred */
+        const scale = Math.max(SHOT_W / im.width, SHOT_H / im.height);
+        const w = im.width * scale, h = im.height * scale;
+        x.drawImage(im, (SHOT_W - w)/2, (SHOT_H - h)/2, w, h);
+        resolve(c.toDataURL('image/jpeg', 0.72));
+      };
+      im.src = fr.result;
+    };
+    fr.readAsDataURL(file);
+  });
+}
+
+function pickPortrait(item){
+  if(spinning) return;
+  const inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = 'image/*';
+  inp.addEventListener('change', () => {
+    const f = inp.files && inp.files[0];
+    if(!f) return;
+    fileToPortrait(f).then(data => {
+      item.img = data;
+      const r = roster.find(x => x.id === item.id); if(r) r.img = data;
+      clop(); render(false);
+      toast('Got a likeness of ' + item.label + '.');
+    }).catch(err => toast(err.message));
+  });
+  inp.click();
+}
+
+/* the little frame on a chip or a headstone */
+function fillAvatar(host, item, withTick){
+  host.textContent = '';
+  if(item.img){
+    const im = document.createElement('img');
+    im.alt = ''; im.src = item.img;            /* set as a property, never as markup */
+    im.addEventListener('error', () => { item.img = null; fillAvatar(host, item, withTick); });
+    host.appendChild(im);
+  } else {
+    const q = document.createElement('span');
+    q.className = 'q'; q.textContent = '?';
+    q.title = 'This person is missing';
+    host.appendChild(q);
+  }
+  if(withTick){ const t = document.createElement('span'); t.className = 'tick'; host.appendChild(t); }
+}
+
 /* ── items ───────────────────────────────────────────── */
 function addItems(raw){
   const parts = String(raw).split(/[\n,;]+/).map(s=>s.trim()).filter(Boolean);
@@ -1082,7 +1271,7 @@ function addItems(raw){
     colorOf.set(it.id, it.color);
     items.push(it); added++;
   }
-  if(added){ clop(); roster = items.slice(); render(true); bump($('#countBadge')); }
+  if(added){ clop(); roster = items.slice(); render(true); bump($('#countBadge')); huntPortraits(); }
   return added;
 }
 function removeItem(id, silent){
@@ -1108,11 +1297,16 @@ function renderChips(){
     li.className = 'chip'; li.dataset.id = it.id;
     li.style.animationDelay = (prev.has(String(it.id)) ? 0 : Math.min(i*32, 320)) + 'ms';
     if(prev.has(String(it.id))) li.style.animation = 'none';
-    li.innerHTML = '<span class="dot" style="background:' + it.color + ';color:' + it.color + '"></span>' +
+    li.innerHTML = '<button class="av" style="--c:' + it.color + '"></button>' +
                    '<span class="label"></span>' +
                    '<button class="x" title="Run ’em out of town" aria-label="Remove">' +
                      '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>' +
                    '</button>';
+    const av = li.querySelector('.av');
+    fillAvatar(av, it, true);
+    av.title = it.img ? 'Change the photo' : 'No photo — click to add one';
+    av.setAttribute('aria-label', (it.img ? 'Change photo for ' : 'Add a photo for ') + it.label);
+    av.addEventListener('click', () => pickPortrait(it));
     li.querySelector('.label').textContent = it.label;
     li.querySelector('.x').setAttribute('aria-label', 'Remove ' + it.label);
     li.querySelector('.x').addEventListener('click', () => {
@@ -1135,7 +1329,9 @@ function renderElim(){
   eliminated.forEach((e, i) => {
     const li = document.createElement('li');
     li.className = 'elim' + (e.champ ? ' champ' : '');
-    li.innerHTML = '<span class="n">' + (e.champ ? '★' : (eliminated.length - i)) + '</span><span class="t"></span>';
+    li.innerHTML = '<span class="n">' + (e.champ ? '★' : (eliminated.length - i)) + '</span>' +
+                   '<span class="av"></span><span class="t"></span>';
+    fillAvatar(li.querySelector('.av'), e, false);
     li.querySelector('.t').textContent = e.label;
     ul.appendChild(li);
   });
@@ -1441,7 +1637,6 @@ function finishSpin(){
 const scrim = $('#scrim'), modal = $('#modal');
 let modalMode = null, koItem = null;
 
-const KO_EMOJI = ['💥','🔥','💀','🎯','🤠','☠️'];
 const KO_LINE = [
   'Rode out at sundown, boots first.',
   'Never even cleared the holster.',
@@ -1449,12 +1644,30 @@ const KO_LINE = [
   'One less mouth at the bar.'
 ];
 
+/* put the face on the poster — or admit we haven't got one */
+function setPortrait(item, mode){
+  const img = $('#mImg'), miss = $('#mMissing'), cap = $('#mCap'), st = $('#mStar');
+  if(item && item.img){
+    img.onerror = () => { item.img = null; setPortrait(item, mode); render(false); };
+    img.src = item.img; img.alt = item.label; img.hidden = false; miss.hidden = true;
+    cap.classList.remove('missing');
+    cap.hidden = true;                       /* the face speaks for itself */
+  } else {
+    img.hidden = true; img.removeAttribute('src'); img.alt = '';
+    miss.hidden = false;
+    cap.hidden = false;
+    cap.classList.add('missing');
+    cap.textContent = 'This person is missing';
+  }
+  st.hidden = mode !== 'win';
+}
+
 function openKO(item){
   koItem = item; modalMode = 'ko';
   modal.className = 'poster out';
   $('#trophyRing').hidden = true;
   $('#mTop').textContent = 'WANTED';
-  $('#mEmoji').textContent = KO_EMOJI[(Math.random()*KO_EMOJI.length)|0];
+  setPortrait(item, 'ko');
   $('#mKicker').textContent = 'Showdown ' + (rounds + 1) + ' · shot down';
   $('#mTitle').innerHTML = '<s></s>';
   $('#mTitle').firstChild.textContent = item.label;
@@ -1462,7 +1675,7 @@ function openKO(item){
   $('#mSub').textContent = left === 1
     ? 'One soul left standin’ — the wheel has spoken.'
     : left + ' still ridin’. ' + KO_LINE[(Math.random()*KO_LINE.length)|0];
-  $('#mBtn').textContent = left === 1 ? 'Crown the last one 🤠' : 'Next draw →';
+  $('#mBtn').textContent = left === 1 ? 'Crown the last one →' : 'Next draw →';
   scrim.classList.add('show');
   $('#mBtn').focus();
 }
@@ -1472,7 +1685,7 @@ function openWin(item){
   modal.className = 'poster win';
   $('#trophyRing').hidden = false;
   $('#mTop').textContent = 'LAST ONE STANDIN’';
-  $('#mEmoji').textContent = '🏆';
+  setPortrait(item, 'win');
   $('#mKicker').textContent = 'Outlasted ' + rounds + ' showdown' + (rounds === 1 ? '' : 's');
   $('#mTitle').textContent = item.label;
   $('#mSub').textContent = 'Still breathin’ when the dust settled. That settles it.';
@@ -1489,7 +1702,7 @@ function advance(){
   if(modalMode === 'ko'){
     scrim.classList.remove('show');
     const item = koItem;
-    eliminated.unshift({ label: item.label, color: item.color });
+    eliminated.unshift({ label: item.label, color: item.color, img: item.img });
     rounds++;
     const i = items.findIndex(x => x.id === item.id);
     if(i >= 0) items.splice(i,1);
@@ -1498,7 +1711,7 @@ function advance(){
     setBusy(false);
     if(items.length === 1){
       const champ = items[0];
-      eliminated.unshift({ label: champ.label, color: champ.color, champ: true });
+      eliminated.unshift({ label: champ.label, color: champ.color, img: champ.img, champ: true });
       renderElim(); save();
       setTimeout(() => openWin(champ), 640);
     }
@@ -1627,6 +1840,7 @@ load();
 $('#soundBtn').classList.toggle('off', !soundOn);
 $('#musicBtn').classList.toggle('off', !musicOn);
 render(false);
+huntPortraits();
 requestAnimationFrame(frame);
 /* redraw once the display face lands so the canvas picks it up */
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(() => drawWheel(performance.now()));
