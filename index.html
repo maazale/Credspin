@@ -1779,7 +1779,7 @@ $('#optInput').addEventListener('paste', e => {
   const txt = (e.clipboardData || window.clipboardData).getData('text');
   if(txt && /[\n,;]/.test(txt)){ e.preventDefault(); addItems(txt); $('#optInput').value=''; }
 });
-const CREDMINDS = ['Ahmad','Anas','Moiz','Maaz','Fahad','Usman','Talha','Salman','Qirat','Ashna'];
+const CREDMINDS = ['Ahmad','Anas','Moiz','Maaz','Fahad','Usman','Talha','Salman','Qirat','Ashna','Talia'];
 $('#sampleBtn').addEventListener('click', () => {
   items = []; eliminated = []; rounds = 0; drawn = []; rotation = 0;
   addItems(CREDMINDS.join('\n'));
