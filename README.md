@@ -1,29 +1,48 @@
 # Credspin
 
-An elimination roulette wheel. Add your options, spin, and the wheel knocks one out every round — whatever survives to the end is the winner.
+An elimination roulette wheel with a Western problem. Round up your options, give the wheel a
+turn, and every spin knocks one out — whoever's still standin' at the end takes the pot.
 
 **Live:** https://maazale.github.io/Credspin/
 
 ## What it does
 
-- Add options one at a time, or paste a whole list (newline / comma separated)
-- **Within Credminds** loads the team roster in one click
-- Every spin eliminates the option under the pointer; the remaining slices smoothly re-flow to fill the wheel
-- Last option standing gets the trophy, confetti, and a rematch button
-- Knockout history, round counter, shuffle, and reset
+- Add options one at a time, or paste a whole roster (newline / comma separated)
+- **Credminds crew** loads the team in one click
+- Every draw eliminates the option under the pointer; the remaining slices smoothly re-flow to fill the wheel
+- Last one standin' gets the poster, the harmonica and a rematch
+- Boot Hill knockout history, showdown counter, shuffle, and reset
 - Board state persists in `localStorage`
+
+## The look
+
+Sundown in the territory — a banded sun sinking behind layered mesas, saguaro silhouettes,
+drifting dust and tumbleweeds rolling the horizon.
+
+- Tooled-leather panels with brass rivets, swinging in like saloon doors
+- Wagon-wheel canvas: saddle-stud rim, brass pegs, revolver-cylinder hub
+- Brass cartridge pointer that kicks off every peg
+- The logo wears a cowboy hat — and tips it when you hover
+- Eliminations arrive as a nailed-up **WANTED** poster, shot through with bullet holes
+- Muzzle flash and screen recoil on every kill
+
+## Sound
+
+- Background cowboy standoff theme on a loop, ducked while the wheel spins, toggleable
+- Effects synthesized live in WebAudio: dry cylinder clicks per peg, a six-shooter report with
+  low thump and ricochet tail, and a lonesome harmonica for the survivor
 
 ## Details
 
 - Single self-contained `index.html` — no build step, no dependencies, no bundler
-- Canvas wheel with eased 4–6s spin, per-peg tick sounds, and a pointer that kicks off each boundary
-- Background roulette theme synthesized live in WebAudio (no audio files), ducked while spinning, toggleable
-- Confetti engine, animated aurora background, spring-in components
-- Responsive to 390px, and respects `prefers-reduced-motion`
+- Canvas wheel with an eased 4–6s spin and slices that tween into place
+- Confetti engine throwing gold coins, sheriff stars and casings
+- Responsive down to narrow phones, and respects `prefers-reduced-motion`
 
 ## Running it
 
-Open `index.html` in a browser. That's it.
+Open `index.html` in a browser. That's it. (The theme needs
+`Cowboy Standoff Music Sound Effect.mp3` sitting next to it.)
 
 ---
 
