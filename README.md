@@ -38,7 +38,8 @@ marker in Boot Hill.
 - Anyone without a photo rides as **"this person is missing"** — a `?` over a hatted
   silhouette, which is a perfectly respectable look for a wanted poster
 
-See [`portraits/README.md`](portraits/README.md) for the naming rules.
+Sources live in `wanted images/`; `python3 tools/make-portraits.py` rebuilds `portraits/`
+from them. See [`portraits/README.md`](portraits/README.md) for the naming rules.
 
 ## Sound
 

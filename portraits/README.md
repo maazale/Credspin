@@ -20,19 +20,21 @@ Roughly 3:4 portrait — the frame crops to fill, centred. 450×600 is plenty; t
 
 ## Regenerating from the originals
 
-The full-size sources live in `../wanted images/`. To rebuild this folder from them:
+The full-size sources live in `../wanted images/`. Rebuild this folder with:
 
 ```sh
-for f in "wanted images"/*.png; do
-  base=$(basename "$f" .png)
-  slug=$(echo "$base" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+|-+$//g')
-  sips -c 1024 768 "$f" --out /tmp/pc.png
-  sips --resampleHeightWidth 600 450 /tmp/pc.png --out /tmp/pr.png
-  sips -s format jpeg -s formatOptions 82 /tmp/pr.png --out "portraits/$slug.jpg"
-done
+python3 tools/make-portraits.py
 ```
 
-That squeezes ~3.1 MB of PNGs down to ~400 KB of JPEGs.
+It crops each source to 3:4, downscales to 450×600 with Lanczos, and writes a lowercase
+JPEG named after the contender's slug. ~3 MB of PNGs becomes ~230 KB of JPEGs.
+
+Faces that don't sit centred in their source get an entry in the script's `FACE_X` map
+(name → x of the face centre in the original), so the crop follows the face instead of the
+frame. `Maaz` is the current example.
+
+> `sips -c` only ever crops from the centre — its `--cropOffset` flag is silently ignored
+> for this — which is why the build uses Pillow.
 
 ## No file? No problem
 
